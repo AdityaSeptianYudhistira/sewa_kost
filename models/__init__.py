@@ -5,3 +5,4 @@ from . import kamar
 from . import tipe_kamar
 from . import furnitur
 from . import pelayanan
+from . import order

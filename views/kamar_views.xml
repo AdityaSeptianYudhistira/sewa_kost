@@ -2,7 +2,7 @@
 <odoo>
 
 <!-- kost.kamar tree view -->
-<record id="model_name_view_tree" model="ir.ui.view">
+<record id="kost_kamar_view_tree" model="ir.ui.view">
     <field name="name">Kamar</field>
     <field name="model">kost.kamar</field>
     <field name="arch" type="xml">
@@ -13,6 +13,7 @@
             <field name="furnitur_id"/>
             <field name="harga"/>
             <field name="stok"/>
+            <field name="orderdetail_ids"/>
         </tree>
     </field>
 </record>

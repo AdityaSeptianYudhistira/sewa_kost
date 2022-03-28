@@ -12,13 +12,17 @@ class Kamar(models.Model):
     tipe_kamar_id = fields.Many2one('kost.tipe_kamar', 
         string='Tipe Kamar', 
         required=True,  
-        domain=[('harga','>','199')]
+        # domain=[('harga','>','199')]
         )
     furnitur_id = fields.Many2one('kost.furnitur', 
         string='Furnitur Tambahan',
         required=True
         )
-
+    orderdetail_ids = fields.One2many(
+        string='Order Detail',
+        comodel_name='kost.order_detail',
+        inverse_name='kamar_id',
+    )
     harga = fields.Char(
         compute='_compute_harga', 
         string='Harga'
@@ -31,7 +35,7 @@ class Kamar(models.Model):
 
     stok = fields.Integer(string='Kamar yang Tersedia')
 
-    des_tipe_kamar = fields.Integer(compute='_compute_des_tipe_kamar', string='Deskripsi Tipe Kamar')
+    des_tipe_kamar = fields.Char(compute='_compute_des_tipe_kamar', string='Deskripsi Tipe Kamar')
     
     @api.depends('tipe_kamar_id')
     def _compute_des_tipe_kamar(self):

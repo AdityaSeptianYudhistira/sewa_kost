@@ -33,6 +33,7 @@
         'views/tipe_kamar_views.xml',
         'views/furnitur_views.xml',
         'views/pelayanan_views.xml',
+        'views/order_views.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
