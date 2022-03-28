@@ -10,12 +10,12 @@ class Kamar(models.Model):
         required=True
         )
     tipe_kamar_id = fields.Many2one('kost.tipe_kamar', 
-        string='tipe_kamar', 
+        string='Tipe Kamar', 
         required=True,  
-        #domain=[('harga','>','199')] #Memberi filter dengan kondisi tertentu
+        domain=[('harga','>','199')]
         )
     furnitur_id = fields.Many2one('kost.furnitur', 
-        string='Furnitur',
+        string='Furnitur Tambahan',
         required=True
         )
 
@@ -30,6 +30,20 @@ class Kamar(models.Model):
             record.harga = record.tipe_kamar_id.harga + record.furnitur_id.harga
 
     stok = fields.Integer(string='Kamar yang Tersedia')
+
+    des_tipe_kamar = fields.Integer(compute='_compute_des_tipe_kamar', string='Deskripsi Tipe Kamar')
+    
+    @api.depends('tipe_kamar_id')
+    def _compute_des_tipe_kamar(self):
+        for record in self:
+            record.des_tipe_kamar = record.tipe_kamar_id.deskripsi
+    
+    des_furnitur = fields.Char(compute='_compute_des_furnitur', string='Deskripsi Furnitur')
+    
+    @api.depends('furnitur_id')
+    def _compute_des_furnitur(self):
+        for record in self:
+            record.des_furnitur = record.furnitur_id.deskripsi
     
     
 

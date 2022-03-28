@@ -9,8 +9,39 @@
         <tree>
             <!-- Add your fields here -->
             <field name="name"/>
+            <field name="tipe_kamar_id"/>
+            <field name="furnitur_id"/>
             <field name="harga"/>
+            <field name="stok"/>
         </tree>
+    </field>
+</record>
+
+<!-- kost.kamar form view -->
+<record id="kost_kamar_view_form" model="ir.ui.view">
+    <field name="name">Kamar</field>
+    <field name="model">kost.kamar</field>
+    <field name="arch" type="xml">
+        <form string="">
+            <sheet>
+                <group>
+                    <!-- Add your fields here -->
+                    <field name="name"/>
+                    <field name="tipe_kamar_id"/>
+                    <field name="furnitur_id"/>
+                    <field name="harga"/>
+                    <field name="stok"/>
+                </group>
+                <notebook>
+                    <page string="Deskripsi Tipe Kamar">
+                        <field name="des_tipe_kamar"/>
+                    </page>
+                    <page  string="Deskripsi Furnitur Tambahan">
+                        <field name="des_furnitur"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </form>
     </field>
 </record>
 

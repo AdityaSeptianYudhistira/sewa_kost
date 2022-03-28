@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <!-- kost.pelayanan tree view -->
+    <record id="kost_pelayanan_view_tree" model="ir.ui.view">
+        <field name="name">Daftar Pelayanan</field>
+        <field name="model">kost.pelayanan</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- Add your fields here -->
+                <field name="name"/>
+                <field name="deskripsi"/>
+                <field name="stok"/>
+                <field name="harga"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- kost.pelayanan form view -->
+    <record id="model_name_view_form" model="ir.ui.view">
+        <field name="name">Pelayanan Kost</field>
+        <field name="model">kost.pelayanan</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <!-- Add your fields here -->
+                        <field name="name"/>
+                        <field name="deskripsi"/>
+                        <field name="stok"/>
+                        <field name="harga"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <!-- kost.pelayanan action window -->
+    <record id="kost_pelayanan_action" model="ir.actions.act_window">
+        <field name="name">Pelayanan Kost</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">kost.pelayanan</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem 
+        id="fasilitas_pelayanan_menu_act" 
+        name="Pelayanan" 
+        parent="kost_fasilitas_menu_categ" 
+        action="kost_pelayanan_action" 
+        sequence="40"/>
+
+</odoo>
