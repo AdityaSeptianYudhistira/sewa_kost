@@ -29,10 +29,7 @@ class OrderDetail(models.Model):
     order_id = fields.Many2one('kost.order', string='Order')
     kamar_id = fields.Many2one('kost.kamar', string='Kamar')
 
-    name = fields.Selection(
-        string='Name', 
-        selection=[('kamar', 'Kamar'), 
-                  ('pelayanan', 'Pelayanan')])
+    name = fields.Char(string='Name')
     harga = fields.Integer(compute='_compute_harga', string='harga')
     qty = fields.Integer(string='Lama Sewa')
     harga_satuan = fields.Integer(compute='_compute_harga_satuan', string='Harga Perbulan')
