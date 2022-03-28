@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <!-- kost.tipe_kamar tree view -->
+    <record id="kost_tipe_kamar_view_tree" model="ir.ui.view">
+        <field name="name">Tipe Kamar</field>
+        <field name="model">kost.tipe_kamar</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- Add your fields here -->
+                <field name="name"/>
+                <field name="deskripsi"/>
+                <field name="harga"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- kost.tipe_kamar form view -->
+    <record id="tipe_kamar_view_form" model="ir.ui.view">
+        <field name="name">Tipe Kamar</field>
+        <field name="model">kost.tipe_kamar</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <!-- Add your fields here -->
+                        <field name="name"/>
+                        <field name="harga"/>
+                    </group>
+
+                    <group>
+                        <field name="deskripsi"/> 
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <!-- kost.tipe_kamar action window -->
+    <record id="kost_tipe_kamar_action" model="ir.actions.act_window">
+        <field name="name">Daftar Tipe Kamar</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">kost.tipe_kamar</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem 
+        id="kost_tipe_kamar_menu_act" 
+        name="Tipe Kamar" 
+        parent="kost_fasilitas_menu_categ" 
+        action="kost_tipe_kamar_action" 
+        sequence="20"/>
+
+</odoo>

@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <!-- kost.furnitur tree view -->
+    <record id="kost_furnitur_view_tree" model="ir.ui.view">
+        <field name="name">Furnitur</field>
+        <field name="model">kost.furnitur</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- Add your fields here -->
+                <field name="name"/>
+                <field name="deskripsi"/>
+                <field name="harga"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- kost.furnitur form view -->
+    <record id="kost_furnitur_view_form" model="ir.ui.view">
+        <field name="name">Furnitur</field>
+        <field name="model">kost.furnitur</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <!-- Add your fields here -->
+                        <field name="name"/>
+                        <field name="harga"/>
+                    </group>
+              
+                    <group>
+                        <field name="deskripsi"/> 
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- kost.furnitur action window -->
+    <record id="furnitur_action" model="ir.actions.act_window">
+        <field name="name">Furnitur</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">kost.furnitur</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem 
+        id="kost_furnitur_menu_act" 
+        name="Furnitur" 
+        parent="kost_fasilitas_menu_categ" 
+        action="furnitur_action" 
+        sequence="30"/>
+
+</odoo>

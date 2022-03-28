@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_kost_kamar,kost.kamar,model_kost_kamar,,1,1,1,1
+access_kost_tipe_kamar,kost.tipe_kamar,model_kost_tipe_kamar,,1,1,1,1
+access_kost_furnitur,kost.furnitur,model_kost_furnitur,,1,1,1,1

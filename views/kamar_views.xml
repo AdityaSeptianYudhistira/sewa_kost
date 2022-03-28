@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+<!-- kost.kamar tree view -->
+<record id="model_name_view_tree" model="ir.ui.view">
+    <field name="name">Kamar</field>
+    <field name="model">kost.kamar</field>
+    <field name="arch" type="xml">
+        <tree>
+            <!-- Add your fields here -->
+            <field name="name"/>
+            <field name="harga"/>
+        </tree>
+    </field>
+</record>
+
+<!-- kost.kamar action window -->
+<record id="kost_kamar_action" model="ir.actions.act_window">
+    <field name="name">Daftar Kamar</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">kost.kamar</field>
+    <field name="view_mode">tree,form</field>
+</record>
+    
+<!-- This Menu Item must have a parent and an action -->
+<menuitem 
+    id="kost_fasilitas_kamar_menu_act" 
+    name="Kamar" 
+    parent="kost_fasilitas_menu_categ" 
+    action="kost_kamar_action" 
+    sequence="10"/>
+
+</odoo>
