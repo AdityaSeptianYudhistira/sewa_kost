@@ -20,7 +20,7 @@ class Kamar(models.Model):
         )
     orderdetail_ids = fields.One2many(
         string='Order Detail',
-        comodel_name='kost.order_detail',
+        comodel_name='kost.order_kamar_detail',
         inverse_name='kamar_id',
     )
     harga = fields.Char(

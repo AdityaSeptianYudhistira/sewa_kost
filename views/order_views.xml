@@ -12,7 +12,8 @@
                 <field name="tanggal_pesan"/>
                 <field name="tanggal_pengiriman"/>
                 <field name="total"/>
-                <field name="orderdetail_ids"/>
+                <field name="orderkamardetail_ids"/>
+                <field name="orderpelayanandetail_ids"/>
             </tree>
         </field>
     </record>
@@ -31,10 +32,7 @@
                         <field name="tanggal_pengiriman"/>       
                         <field name="total"/>
                     </group>                
-                    <notebook colspan='3'>
-                        <page name="kamar" string="Kamar">
-                        <!-- Data milik order detail -->
-                            <field name="orderdetail_ids">
+                            <field name="orderkamardetail_ids">
                                 <tree editable="bottom">
                                     <field name="kamar_id"/>
                                     <field name="harga_satuan"/>
@@ -42,8 +40,14 @@
                                     <field name="harga" sum="Total"/>
                                 </tree>
                             </field> 
-                        </page>
-                    </notebook>
+                            <field name="orderpelayanandetail_ids">
+                                <tree editable="bottom">
+                                    <field name="pelayanan_id"/>
+                                    <field name="harga_satuan"/>
+                                    <field name="qty"/>
+                                    <field name="harga" sum="Total"/>
+                                </tree>
+                            </field> 
                 </sheet>
             </form>
         </field>
