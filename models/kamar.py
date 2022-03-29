@@ -18,9 +18,9 @@ class Kamar(models.Model):
         string='Furnitur Tambahan',
         required=True
         )
-    orderkamardetail_ids = fields.One2many(
+    orderdetail_ids = fields.One2many(
         string='Order Detail',
-        comodel_name='kost.order_kamar_detail',
+        comodel_name='kost.order_detail',
         inverse_name='kamar_id',
     )
     harga = fields.Char(
