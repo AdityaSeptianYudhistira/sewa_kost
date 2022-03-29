@@ -6,12 +6,18 @@
         <field name="name">kost.order</field>
         <field name="model">kost.order</field>
         <field name="arch" type="xml">
+        
             <tree>
+                <header>
+                    <button name ="confirm" string="Konfirmasi Check Out" class="btn btn-primary" type="object"/>
+                </header>
                 <!-- Add your fields here -->
                 <field name="name"/>
+                <field name="penyewa_id"/>
                 <field name="tanggal_pesan"/>
                 <field name="tanggal_pengiriman"/>
                 <field name="total"/>
+                <field name="checkouted"/>
                 <field name="orderkamardetail_ids"/>
                 <field name="orderpelayanandetail_ids"/>
             </tree>
@@ -28,8 +34,10 @@
                     <group>
                         <!-- Add your fields here -->
                         <field name="name"/>
+                        <field name="penyewa_id"/>
                         <field name="tanggal_pesan"/>
-                        <field name="tanggal_pengiriman"/>       
+                        <field name="tanggal_pengiriman"/> 
+                        <field name="checkouted"/>      
                         <field name="total"/>
                     </group>                
                             <field name="orderkamardetail_ids">

@@ -1,4 +1,5 @@
 from odoo import api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class Order(models.Model):
@@ -20,8 +21,12 @@ class Order(models.Model):
     name = fields.Char(string='Kode Order', required=True)
     tanggal_pesan = fields.Date('Tanggal Sewa', default=fields.Date.today())
     tanggal_pengiriman = fields.Date(string="Tanggal Mulai Sewa", default=fields.Date.today())
+    penyewa_id = fields.Many2one('res.partner', string='Penyewa', domain=[('is_customer_kost','=', True)],store=True)
     total = fields.Char(compute='_compute_total', string='Total Harga', store=True)
-
+    checkouted = fields.Boolean(string='Penyewa telah Check Out', default=False)
+    
+    def confirm(self):
+        pass
     
     @api.depends('orderkamardetail_ids')
     def _compute_total(self):
@@ -44,7 +49,9 @@ class OrderKamarDetail(models.Model):
         selection=[('kamar', 'Kamar'), 
                   ('pelayanan', 'Pelayanan')])
     harga = fields.Integer(compute='_compute_harga', string='harga')
-    qty = fields.Integer(string='Lama Sewa (Per Bulan)')
+    qty = fields.Integer(string='Kuantitas')
+    # durasi = fields.Integer(string='Lama Sewa')
+    
     harga_satuan = fields.Integer(compute='_compute_harga_satuan', string='Harga Perbulan')
     
     @api.depends('kamar_id')
@@ -64,6 +71,8 @@ class OrderKamarDetail(models.Model):
         if record.qty:
             self.env['kost.kamar'].search([('id', '=', record.kamar_id.id)]).write({'stok': record.kamar_id.stok - record.qty})
             return record
+    
+
 
 class OrderPelayananDetail(models.Model):
     _name = 'kost.order_pelayanan_detail'
@@ -77,7 +86,15 @@ class OrderPelayananDetail(models.Model):
         selection=[('kamar', 'Kamar'), 
                   ('pelayanan', 'Pelayanan')])
     harga = fields.Integer(compute='_compute_harga', string='harga')
-    qty = fields.Integer(string='Lama Sewa (Per Bulan)')
+    qty = fields.Integer(string='Kuantitas (Lama sewa/Jumlah)')
+
+    @api.constrains('qty')
+    def _check_stok(self):
+        for record in self:
+            bahan = self.env['kost.pelayanan'].search([('stok', '<',record.qty),('id', '=',record.id)])
+            if bahan:
+                raise ValidationError("Pelayanan saat ini tidak tersedia")
+
     harga_satuan = fields.Integer(compute='_compute_harga_satuan', string='Harga Perbulan')
     
     @api.depends('pelayanan_id')
@@ -97,3 +114,5 @@ class OrderPelayananDetail(models.Model):
         if record.qty:
             self.env['kost.pelayanan'].search([('id', '=', record.pelayanan_id.id)]).write({'stok': record.pelayanan_id.stok - record.qty})
             return record
+
+    

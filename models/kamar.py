@@ -10,7 +10,7 @@ class Kamar(models.Model):
         required=True
         )
     tipe_kamar_id = fields.Many2one('kost.tipe_kamar', 
-        string='Tipe Kamar', 
+        string='Luas Kamar', 
         required=True,  
         )
     furnitur_id = fields.Many2one('kost.furnitur', 

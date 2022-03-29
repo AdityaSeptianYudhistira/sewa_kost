@@ -36,6 +36,10 @@
         'views/order_views.xml',
         'views/pegawai_views.xml',
         'views/customer_views.xml',
+        'views/checkout_views.xml',
+        'views/accounting_views.xml',
+        'report/report.xml',
+        'report/order_report.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

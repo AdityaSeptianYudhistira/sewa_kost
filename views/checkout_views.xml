@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    
+    <!-- kost.checkout tree view -->
+    <record id="kost_checkout_view_tree" model="ir.ui.view">
+        <field name="name">kost.checkout.view.tree</field>
+        <field name="model">kost.checkout</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- Add your fields here -->
+                <field name="name"/>
+                <field name="order_id"/>
+                <field name="tagihan"/>
+                <field name="tgl_checkout"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- kost.checkout form view -->
+    <record id="model_name_view_form" model="ir.ui.view">
+        <field name="name">Form Checkout</field>
+        <field name="model">kost.checkout</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <!-- Add your fields here -->
+                        <field name="name"/>
+                        <field name="order_id"/>
+                        <field name="tagihan"/>
+                        <field name="tgl_checkout"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- kost.checkout action window -->
+    <record id="kost_checkout_action" model="ir.actions.act_window">
+        <field name="name">Checkout Penyewa</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">kost.checkout</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem 
+        id="kost_checkout_menu_act"    
+        name="Check Out" 
+        parent="kost_order_menu_categ" 
+        action="kost_checkout_action" 
+        sequence="20"/>
+
+</odoo>

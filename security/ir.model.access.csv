@@ -6,3 +6,5 @@ access_kost_pelayanan,kost.pelayanan,model_kost_pelayanan,,1,1,1,1
 access_kost_order,kost.order,model_kost_order,,1,1,1,1
 access_kost_order_kamar_detail,kost.order_kamar_detail,model_kost_order_kamar_detail,,1,1,1,1
 access_kost_order_pelayanan_detail,kost.order_pelayanan_detail,model_kost_order_pelayanan_detail,,1,1,1,1
+access_kost_checkout,kost.checkout,model_kost_checkout,,1,1,1,1
+access_kost_accounting,kost.accounting,model_kost_accounting,,1,1,1,1

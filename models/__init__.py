@@ -7,3 +7,5 @@ from . import furnitur
 from . import pelayanan
 from . import order
 from . import res_partner
+from . import checkout
+from . import accounting
