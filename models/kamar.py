@@ -12,7 +12,6 @@ class Kamar(models.Model):
     tipe_kamar_id = fields.Many2one('kost.tipe_kamar', 
         string='Tipe Kamar', 
         required=True,  
-        # domain=[('harga','>','199')]
         )
     furnitur_id = fields.Many2one('kost.furnitur', 
         string='Furnitur Tambahan',

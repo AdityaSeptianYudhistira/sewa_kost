@@ -20,5 +20,12 @@
         name="Order" 
         parent="kost_menu_root" 
         sequence="20"/>
+
+    <!-- This Menu Item Must have a parent -->
+    <menuitem 
+        id="kost_partner_menu_categ" 
+        name="Partner" 
+        parent="kost_menu_root"
+        sequence="30"/>
       
 </odoo>

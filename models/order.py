@@ -28,7 +28,7 @@ class Order(models.Model):
         for record in self:
             # Mengambil harga dari order detail ke dalam bentuk array kemudian dijumlahkan menggunakan sum()
             sum_a = sum(self.env['kost.order_kamar_detail'].search([('order_id', '=', record.id)]).mapped('harga'))
-            sum_b = sum(self.env['kost.order_pelayanan_detail'].search([('order_id', '=', record.id)]).mapped('harga'))
+            sum_b = sum(self.env['kost.order_pelayanan_detail'].search([('orderp_id', '=', record.id)]).mapped('harga'))
             record.total = sum_a + sum_b
 
 
@@ -44,7 +44,7 @@ class OrderKamarDetail(models.Model):
         selection=[('kamar', 'Kamar'), 
                   ('pelayanan', 'Pelayanan')])
     harga = fields.Integer(compute='_compute_harga', string='harga')
-    qty = fields.Integer(string='Lama Sewa')
+    qty = fields.Integer(string='Lama Sewa (Per Bulan)')
     harga_satuan = fields.Integer(compute='_compute_harga_satuan', string='Harga Perbulan')
     
     @api.depends('kamar_id')
@@ -77,7 +77,7 @@ class OrderPelayananDetail(models.Model):
         selection=[('kamar', 'Kamar'), 
                   ('pelayanan', 'Pelayanan')])
     harga = fields.Integer(compute='_compute_harga', string='harga')
-    qty = fields.Integer(string='Lama Sewa')
+    qty = fields.Integer(string='Lama Sewa (Per Bulan)')
     harga_satuan = fields.Integer(compute='_compute_harga_satuan', string='Harga Perbulan')
     
     @api.depends('pelayanan_id')
