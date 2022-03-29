@@ -14,7 +14,7 @@ class Order(models.Model):
     orderpelayanandetail_ids = fields.One2many(
         string='Detail Pelayanan',
         comodel_name='kost.order_pelayanan_detail',
-        inverse_name='order_id',
+        inverse_name='orderp_id',
     )
     
     name = fields.Char(string='Kode Order', required=True)
@@ -23,7 +23,7 @@ class Order(models.Model):
     total = fields.Char(compute='_compute_total', string='Total Harga', store=True)
 
     
-    @api.depends('orderkamardetail_ids', 'orderpelayanandetail_ids')
+    @api.depends('orderkamardetail_ids')
     def _compute_total(self):
         for record in self:
             # Mengambil harga dari order detail ke dalam bentuk array kemudian dijumlahkan menggunakan sum()
@@ -60,7 +60,7 @@ class OrderKamarDetail(models.Model):
     # Mengurangi stok berdasarkan qty
     @api.model
     def create(self, vals):
-        record = super(OrderDetail, self).create(vals)
+        record = super(OrderKamarDetail, self).create(vals)
         if record.qty:
             self.env['kost.kamar'].search([('id', '=', record.kamar_id.id)]).write({'stok': record.kamar_id.stok - record.qty})
             return record
@@ -69,7 +69,7 @@ class OrderPelayananDetail(models.Model):
     _name = 'kost.order_pelayanan_detail'
     _description = 'New Description'
 
-    order_id = fields.Many2one('kost.order', string='Order')
+    orderp_id = fields.Many2one('kost.order', string='Order')
     pelayanan_id = fields.Many2one('kost.pelayanan', string='Pelayanan')
 
     name = fields.Selection(
@@ -93,7 +93,7 @@ class OrderPelayananDetail(models.Model):
     # Mengurangi stok berdasarkan qty
     @api.model
     def create(self, vals):
-        record = super(OrderDetail, self).create(vals)
+        record = super(OrderPelayananDetail, self).create(vals)
         if record.qty:
             self.env['kost.pelayanan'].search([('id', '=', record.pelayanan_id.id)]).write({'stok': record.pelayanan_id.stok - record.qty})
             return record
